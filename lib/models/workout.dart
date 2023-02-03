@@ -20,9 +20,15 @@ class Workout extends Equatable {
       print('....$index...');
       startTime += exercises.last.prelude! + exercises.last.duration!;
     }
-    return Workout(title: json['title'] as String?, exercises: exercises);
+    return Workout(
+      title: json['title'] as String?,
+      exercises: exercises,
+    );
   }
-  Map<String, dynamic> toJson() => {'title': title, 'exercises': exercises};
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'exercises': exercises,
+      };
 
   int getTotal() {
     int time =
