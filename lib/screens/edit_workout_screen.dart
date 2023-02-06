@@ -21,7 +21,47 @@ class EditWorkoutScreen extends StatelessWidget {
           WorkoutEditing we = state as WorkoutEditing;
           return Scaffold(
             appBar: AppBar(
-              title: Text(we.workout!.title!),
+              title: InkWell(
+                child: Text(we.workout!.title!),
+                onTap: () => showDialog(
+                  context: context,
+                  builder: (_) {
+                    final controller =
+                        TextEditingController(text: we.workout!.title!);
+                    return AlertDialog(
+                      content: TextField(
+                        controller: controller,
+                        decoration: const InputDecoration(
+                          labelText: "Workout title",
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            if (controller.text.isNotEmpty) {
+                              Navigator.pop(context);
+                              Workout renamed = we.workout!.copyWith(
+                                title: controller.text,
+                              );
+                              BlocProvider.of<WorkoutsCubit>(context)
+                                  .saveWorkout(
+                                renamed,
+                                we.index,
+                              );
+                              BlocProvider.of<WorkoutCubit>(context)
+                                  .editWorkout(
+                                renamed,
+                                we.index,
+                              );
+                            }
+                          },
+                          child: const Text('Rename'),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
               leading: BackButton(
                 onPressed: () {
                   BlocProvider.of<WorkoutCubit>(context).goHome();

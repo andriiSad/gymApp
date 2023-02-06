@@ -6,8 +6,8 @@ import 'package:flutter_bloc_app_complete/models/workout.dart';
 
 import '../helpers/helpers.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +53,10 @@ class HomePage extends StatelessWidget {
                       ),
                       title: Text(workout.title!),
                       trailing: Text(formatTime(workout.getTotal(), true)),
+                      onTap: () => !isExpanded
+                          ? BlocProvider.of<WorkoutCubit>(context)
+                              .startWorkout(workout)
+                          : null,
                     ),
                     body: ListView.builder(
                       shrinkWrap: true,
