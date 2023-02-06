@@ -1,6 +1,5 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_app_complete/blocs/workout_cubit.dart';
 import 'package:flutter_bloc_app_complete/helpers/helpers.dart';
@@ -14,7 +13,7 @@ class WorkoutInProgressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> _getStats(Workout workout, int workoutElapsed) {
+    Map<String, dynamic> getStats(Workout workout, int workoutElapsed) {
       int workoutTotal = workout.getTotal();
       Exercise exercise = workout.getCurrentExercise(workoutElapsed);
       int exerciseElapsed = workoutElapsed - exercise.startTime!;
@@ -44,7 +43,7 @@ class WorkoutInProgressScreen extends StatelessWidget {
     return BlocConsumer<WorkoutCubit, WorkoutState>(
       listener: (context, state) {},
       builder: (context, state) {
-        final stats = _getStats(state.workout!, state.elapsed!);
+        final stats = getStats(state.workout!, state.elapsed!);
         return Scaffold(
           appBar: AppBar(
             title: Text(state.workout!.title!),

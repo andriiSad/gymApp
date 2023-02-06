@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_app_complete/blocs/workout_cubit.dart';
 import 'package:flutter_bloc_app_complete/blocs/workouts_cubit.dart';
-import 'package:flutter_bloc_app_complete/models/workout.dart';
 import 'package:flutter_bloc_app_complete/screens/edit_workout_screen.dart';
 import 'package:flutter_bloc_app_complete/screens/home_screen.dart';
 import 'package:flutter_bloc_app_complete/screens/workout_in_progress_screen.dart';
@@ -41,10 +40,7 @@ class WorkoutTime extends StatelessWidget {
             create: (_) {
               WorkoutsCubit workoutsCubit = WorkoutsCubit();
               if (workoutsCubit.state.isEmpty) {
-                print('...loading json since the state is empty');
                 workoutsCubit.getWorkouts();
-              } else {
-                print('... the state is not empty');
               }
               return workoutsCubit;
             },

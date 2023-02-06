@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Exercise extends Equatable {
-  Exercise({
+  const Exercise({
     required this.title,
     required this.prelude,
     required this.duration,

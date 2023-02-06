@@ -30,7 +30,6 @@ class WorkoutCubit extends Cubit<WorkoutState> {
       WorkoutInProgress wip = (state as WorkoutInProgress);
       if (wip.elapsed! < wip.workout!.getTotal()) {
         emit(WorkoutInProgress(wip.workout, wip.elapsed! + 1));
-        print("...my elapsed time is:${wip.elapsed}");
       } else {
         _timer!.cancel();
         Wakelock.disable();
