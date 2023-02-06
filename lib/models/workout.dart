@@ -38,12 +38,11 @@ class Workout extends Equatable {
         exercises: exercises,
       );
 
-  int getTotal() {
-    int time =
-        exercises.fold(0, (prev, ex) => prev + ex.duration! + ex.prelude!);
+  Exercise getCurrentExercise(int? elapsed) =>
+      exercises.lastWhere((element) => element.startTime! <= elapsed!);
 
-    return time;
-  }
+  int getTotal() =>
+      exercises.fold(0, (prev, ex) => prev + ex.duration! + ex.prelude!);
 
   @override
   List<Object?> get props => [title, exercises];

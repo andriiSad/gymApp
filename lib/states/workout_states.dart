@@ -39,3 +39,10 @@ class WorkoutEditing extends WorkoutState {
         exIndex,
       ];
 }
+
+class WorkoutPaused extends WorkoutState {
+  WorkoutPaused(Workout? workout, int? elapsed) : super(workout, elapsed);
+
+  @override
+  List<Object?> get props => [workout, elapsed];
+}
