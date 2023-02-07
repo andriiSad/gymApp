@@ -54,8 +54,10 @@ class HomeScreen extends StatelessWidget {
                       title: Text(workout.title!),
                       trailing: Text(formatTime(workout.getTotal(), true)),
                       onTap: () => !isExpanded
-                          ? BlocProvider.of<WorkoutCubit>(context)
-                              .startWorkout(workout)
+                          ? {
+                              BlocProvider.of<WorkoutCubit>(context)
+                                  .startWorkout(workout)
+                            }
                           : null,
                     ),
                     body: ListView.builder(
